@@ -1,12 +1,51 @@
-app.controller('GeralCtrl',function(Restangular, $rootScope, $location)
+app.controller('CrudCtrl',function(Restangular, $scope, $location)
 {
+    var usuarioVazio = { id: null,
+            nome: "",
+            telefone: "",
+            dataNascimento: null,
+            endereco: "",
+            numero: "",
+            cidade: "",
+            estado: "",
+            genero: null}
+	
+    $scope.usuario = angular.copy($scope.usuarioVazio);
+    var usuarioServico = Restangular.all("usuario");
+   
     
-	Restangular.all("usuario").getList().then(function (obj){
-		$rootScope.usuarios = obj; 	
-	});
+    $scope.reset = function() {
+        $scope.usuario = angular.copy($scope.usuarioVazio);
+    };
+    
+    $scope.salvar = function() {
+    	usuarioServico.post($scope.usuario);
+    	console.log("Usuario salvo");
+    	$scope.listaUsuario();
+    };
+
+    $scope.remover = function(data) {
+    	Restangular.one("usuario", data.id).remove();
+    	
+    	console.log($scope.us);
+    	//$scope.us.get(5).remove();
+    	//var index = us.indexOf(data);
+        //if (index > -1) us.splice(index, 1);
+   	 	//us[index].remove();
+   	 	$scope.listaUsuario();
+    };
+
+    
+    $scope.listaUsuario = function() {
+    	//listagem
+        usuarioServico.getList().then(function (obj){
+    		$scope.usuarios = obj; 	
+    	});
+        console.log("Usuarios listado");
+    };
 	
-	
-	$rootScope.activetab = $location.path();
+    $scope.listaUsuario();	
+	$scope.activetab = $location.path();
 });
 
 app.controller('HomeCtrl', function($rootScope, $location)

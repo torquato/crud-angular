@@ -1,24 +1,38 @@
 <div class="page-header">
-	<h1>Página Inicial</h1>
+	<h1>Pagina de CRUD</h1>
 
 	<h3>Esta é uma pagina de teste de um CRUD com o Angular</h3>
 
-	<div ng-controller="GeralCtrl">
+	<div ng-controller="CrudCtrl" >
 		<form>
-		
+			ID: {{usuario.id}}<br>
+			Nome: <input ng-model="usuario.nome" type="text"><br>
+			Telefone: <input ng-model="usuario.telefone" type="text"><br>
+			Data Nascimento: <input ng-model="usuario.dataNascimento" type="text"><br>
+			Endereco: <input ng-model="usuario.endereco" type="text"><br>
+			Numero: <input ng-model="usuario.numero" type="text"><br>
+			Cidade: <input ng-model="usuario.cidade" type="text"><br>
+			Estado: <input ng-model="usuario.estado" type="text"><br>
+			Genero: <input ng-model="usuario.genero" type="text"><br>
+			<button ng-click="salvar()">Salvar</button>
+			<button ng-click="reset()">Limpar</button>
+			
+			
 		</form>
 
-
+		<br>
 		<table border="2" >
 			<tr>
 				<td style="padding: 5px">ID</td>
 				<td style="padding: 5px">Nome</td>
 				<td style="padding: 5px">Telefone</td>
+				<td style="padding: 5px">Ação</td>
 			</tr>
 			<tr ng-repeat="u in usuarios">
 				<td style="padding: 5px">{{ u.id }}</td>
 				<td style="padding: 5px">{{ u.nome }}</td>
 				<td style="padding: 5px">{{ u.telefone }}</td>
+				<td><button ng-click="remover(u)">Remover</button></td>
 			</tr>
 		</table>
 	</div>
