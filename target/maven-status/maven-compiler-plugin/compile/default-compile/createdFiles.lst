@@ -1,7 +1,0 @@
-crud\servicos\Impl\UsuarioServicoImpl.class
-crud\servicos\UsuarioServico.class
-crud\modelo\GeneroEnum.class
-crud\controladores\UsuarioRestControl.class
-crud\repositorio\UsuarioRepo.class
-crud\controladores\UsuarioControl.class
-crud\modelo\Usuario.class
