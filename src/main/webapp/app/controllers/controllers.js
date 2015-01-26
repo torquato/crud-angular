@@ -28,12 +28,14 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location, ngTableParams
             user.put().then(function(){
                 console.log("Usuario atualizado");
                 $scope.listaUsuario();
+                $scope.reset();                
             })
         }else{
             console.log($scope.usuario);
             usuarioServico.post($scope.usuario).then(function(){
                 console.log("Usuario salvo");
                 $scope.listaUsuario();
+                $scope.reset(); 
             });
         }
     };
@@ -90,22 +92,25 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location, ngTableParams
     	});
         console.log("Usuarios listado");
     };
-
+    
     $scope.tableParams = new ngTableParams({
         page: 1,            // show first page
         count: 10           // count per page
     }, {
         total: 0, // length of data
         getData: function($defer, params) {
-            $defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            usuarioServico.getList().then(function (obj){
+        		$scope.usuarios = obj; 	
+                console.log("mizera "+obj.length);
+        		params.total(obj.length);
+        		$defer.resolve($scope.usuarios.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+            });
+        	
         }
     });
-
-
-        
     
-    $scope.listaUsuario();    
-
+    
+    $scope.listaUsuario();
 	$scope.activetab = $location.path();
 });
 
