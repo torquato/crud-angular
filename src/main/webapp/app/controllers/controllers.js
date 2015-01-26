@@ -19,23 +19,54 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location)
     };
     
     $scope.salvar = function() {
-    	usuarioServico.post($scope.usuario);
-    	console.log("Usuario salvo");
-    	$scope.listaUsuario();
+    	
+        if($scope.usuario.id != null && $scope.usuario.id != ""){
+
+            var user = Restangular.one("usuario", $scope.usuario.id);
+            user =  $scope.usuario;    
+            user.put().then(function(){
+                console.log("Usuario atualizado");
+                $scope.listaUsuario();
+            })
+
+        }else{
+            usuarioServico.post($scope.usuario).then(function(){
+                console.log("Usuario salvo");
+                $scope.listaUsuario();
+            });
+        }
     };
 
+    $scope.atualizar = function() {
+            var user = Restangular.one("usuario", $scope.usuario.id);
+            user =  $scope.usuario;    
+            user.put().then(function(){
+                console.log("Usuario atualizado");
+                $scope.listaUsuario();
+            })
+    };
+            
+      
+
     $scope.remover = function(data) {
-    	Restangular.one("usuario", data.id).remove();
+    	Restangular.one("usuario", data.id).remove().then(function() {
+            console.log("Usuario removido" + data);
+            $scope.listaUsuario();
+        }, function() {
+            console.log("There was an error saving");
+        });
     	
-    	console.log($scope.us);
     	//$scope.us.get(5).remove();
     	//var index = us.indexOf(data);
         //if (index > -1) us.splice(index, 1);
    	 	//us[index].remove();
-   	 	$scope.listaUsuario();
     };
 
-    
+
+    $scope.selecionar = function(data) {
+        $scope.usuario = data;
+    };
+
     $scope.listaUsuario = function() {
     	//listagem
         usuarioServico.getList().then(function (obj){

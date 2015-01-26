@@ -49,9 +49,9 @@ public class UsuarioControl {
 		usuarioServico.salvarUsuario(usuario);
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, consumes = JSON)
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = JSON)
 	@ResponseBody
-	public void atualizar(@RequestBody Usuario usuario) {
+	public void atualizar(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
 		usuarioServico.salvarUsuario(usuario);
 	}
 

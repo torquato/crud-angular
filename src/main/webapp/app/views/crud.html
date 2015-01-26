@@ -16,9 +16,6 @@
 			Genero: <input ng-model="usuario.genero" type="text"><br>
 			<button ng-click="salvar()">Salvar</button>
 			<button ng-click="reset()">Limpar</button>
-			
-			
-		</form>
 
 		<br>
 		<table border="2" >
@@ -32,9 +29,10 @@
 				<td style="padding: 5px">{{ u.id }}</td>
 				<td style="padding: 5px">{{ u.nome }}</td>
 				<td style="padding: 5px">{{ u.telefone }}</td>
-				<td><button ng-click="remover(u)">Remover</button></td>
+				<td><button ng-click="selecionar(u)">Selecionar</button><button ng-click="remover(u)">Remover</button></td>
 			</tr>
 		</table>
+		</form>
 	</div>
 
 </div>
