@@ -1,3 +1,4 @@
+'use strict';
 app.controller('CrudCtrl',function(Restangular, $scope, $location)
 {
     var usuarioVazio = { id: null,
@@ -18,18 +19,18 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location)
         $scope.usuario = angular.copy($scope.usuarioVazio);
     };
     
+    // forma manual de fazer o save ou update
     $scope.salvar = function() {
     	
-        if($scope.usuario.id != null && $scope.usuario.id != ""){
-
+        if($scope.usuario != undefined && $scope.usuario.id != null && $scope.usuario.id != ""){
             var user = Restangular.one("usuario", $scope.usuario.id);
             user =  $scope.usuario;    
             user.put().then(function(){
                 console.log("Usuario atualizado");
                 $scope.listaUsuario();
             })
-
         }else{
+            console.log($scope.usuario);
             usuarioServico.post($scope.usuario).then(function(){
                 console.log("Usuario salvo");
                 $scope.listaUsuario();
@@ -37,29 +38,40 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location)
         }
     };
 
+    // Outra forma de fazer o save ou update
+    $scope.salvarOuAtualizar = function() {
+        $scope.usuario = Restangular.copy($scope.usuario);
+        $scope.usuario.save().then(function(){
+            console.log("Usuario salvo ou Atualizado");
+            $scope.listaUsuario();
+        });
+    };
+
     $scope.atualizar = function() {
-            var user = Restangular.one("usuario", $scope.usuario.id);
-            user =  $scope.usuario;    
-            user.put().then(function(){
+            //var user = Restangular.one("usuario", $scope.usuario.id);
+            // user =  $scope.usuario;    
+            // user.put().then(function(){
+            //     console.log("Usuario atualizado");
+            //     $scope.listaUsuario();
+            // })
+            $scope.usuario.put().then(function(){
                 console.log("Usuario atualizado");
                 $scope.listaUsuario();
-            })
+            })    
     };
             
-      
 
     $scope.remover = function(data) {
-    	Restangular.one("usuario", data.id).remove().then(function() {
+            data.remove().then(function(){
+                console.log("Usuario Removido");
+                $scope.listaUsuario();
+            })    
+/*        Restangular.one("usuario", data.id).remove().then(function() {
             console.log("Usuario removido" + data);
             $scope.listaUsuario();
         }, function() {
             console.log("There was an error saving");
-        });
-    	
-    	//$scope.us.get(5).remove();
-    	//var index = us.indexOf(data);
-        //if (index > -1) us.splice(index, 1);
-   	 	//us[index].remove();
+        });*/
     };
 
 
@@ -71,6 +83,7 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location)
     	//listagem
         usuarioServico.getList().then(function (obj){
     		$scope.usuarios = obj; 	
+            console.log(obj);
     	});
         console.log("Usuarios listado");
     };
