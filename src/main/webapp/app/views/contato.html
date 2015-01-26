@@ -1,0 +1,14 @@
+<div class="page-header">
+	<h1>Página Contato!</h1>
+	<div ng-controller="ContatoCtrl">
+		<form>
+			<input ng-model="nome" placeholder="Entre com um nome"/>
+		</form>
+		{{nome}}
+		
+		<p ng-bind="nome"></p> 
+		<ul>
+			<li ng-repeat="n in pessoas | filter:nome ">{{n.nome}}</li>
+		</ul>
+	</div>
+</div>

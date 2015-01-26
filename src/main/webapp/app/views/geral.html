@@ -1,0 +1,26 @@
+<div class="page-header">
+	<h1>Página Inicial</h1>
+
+	<h3>Esta é uma pagina de teste de um CRUD com o Angular</h3>
+
+	<div ng-controller="GeralCtrl">
+		<form>
+		
+		</form>
+
+
+		<table border="2" >
+			<tr>
+				<td style="padding: 5px">ID</td>
+				<td style="padding: 5px">Nome</td>
+				<td style="padding: 5px">Telefone</td>
+			</tr>
+			<tr ng-repeat="u in usuarios">
+				<td style="padding: 5px">{{ u.id }}</td>
+				<td style="padding: 5px">{{ u.nome }}</td>
+				<td style="padding: 5px">{{ u.telefone }}</td>
+			</tr>
+		</table>
+	</div>
+
+</div>
