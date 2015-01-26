@@ -1,5 +1,5 @@
 'use strict';
-app.controller('CrudCtrl',function(Restangular, $scope, $location)
+app.controller('CrudCtrl',function(Restangular, $scope, $location, ngTableParams)
 {
     var usuarioVazio = { id: null,
             nome: "",
@@ -80,6 +80,8 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location)
         $scope.usuario = data;
     };
 
+    $scope.tableParams = {};
+    
     $scope.listaUsuario = function() {
     	//listagem
         usuarioServico.getList().then(function (obj){
@@ -88,10 +90,31 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location)
     	});
         console.log("Usuarios listado");
     };
-	
-    $scope.listaUsuario();	
+
+    $scope.tableParams = new ngTableParams({
+        page: 1,            // show first page
+        count: 10           // count per page
+    }, {
+        total: 0, // length of data
+        getData: function($defer, params) {
+            $defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        }
+    });
+
+
+        
+    
+    $scope.listaUsuario();    
+
 	$scope.activetab = $location.path();
 });
+
+
+app.controller('HomeCtrl', function($rootScope, $location)
+{
+   $rootScope.activetab = $location.path();
+});
+
 
 app.controller('HomeCtrl', function($rootScope, $location)
 {

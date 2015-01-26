@@ -1,4 +1,4 @@
-var app = angular.module('app', [ 'restangular', 'ngRoute' ]);
+var app = angular.module('app', [ 'restangular', 'ngRoute','ngTable' ]);
 
 app.config([ 'RestangularProvider', '$routeProvider',
 		function(RestangularProvider, $routeProvider) {
@@ -22,9 +22,9 @@ app.config([ 'RestangularProvider', '$routeProvider',
 			.when('/', {
 				templateUrl : 'app/views/crud.html',
 				controller : 'CrudCtrl',
-			}).when('/geral', {
-				templateUrl : 'app/views/home.html',
-				controller : 'HomeCtrl',
+			}).when('/crudPaginado', {
+				templateUrl : 'app/views/crudPaginado.html',
+				controller : 'CrudCtrl',
 			})
 			// para a rota '/sobre', carregaremos o template sobre.html e o
 			// controller 'SobreCtrl'
