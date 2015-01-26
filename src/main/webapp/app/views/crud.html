@@ -3,23 +3,53 @@
 
 	<h3>Esta é uma pagina de teste de um CRUD com o Angular</h3>
 
-	<div ng-controller="CrudCtrl" >
-		<form>
-			ID: {{usuario.id}}<br>
-			Nome: <input ng-model="usuario.nome" type="text"><br>
-			Telefone: <input ng-model="usuario.telefone" type="text"><br>
-			Data Nascimento: <input ng-model="usuario.dataNascimento" type="text"><br>
-			Endereco: <input ng-model="usuario.endereco" type="text"><br>
-			Numero: <input ng-model="usuario.numero" type="text"><br>
-			Cidade: <input ng-model="usuario.cidade" type="text"><br>
-			Estado: <input ng-model="usuario.estado" type="text"><br>
-			Genero: <input ng-model="usuario.genero" type="text"><br>
-			<button ng-click="salvar()">Salvar</button>
-			<button ng-click="salvarOuAtualizar()">Salvar Automatico</button>
-			<button ng-click="reset()">Limpar</button>
-			<button ng-click="listaUsuario()">Pesquisar</button>
-
-
+	<div ng-controller="CrudCtrl" style="width:800px" >
+		<form >
+		<fieldset >
+			<div  class="form-group">
+				<label>ID: </label>
+				{{usuario.id}}
+			</div>
+			<div  class="form-group">
+				<label>Nome: </label>
+				<input class="form-control" ng-model="usuario.nome" type="text"><br>
+			</div>
+			<div  class="form-group">				
+				<label>Telefone: </label>
+				<input class="form-control" ng-model="usuario.telefone" type="text"><br>
+			</div>
+			<div  class="form-group">				
+				<label>Data Nascimento: </label>
+				<input class="form-control" ng-model="usuario.dataNascimento" type="text"><br>
+			</div>
+			<div  class="form-group">				
+				<label>Endereco: </label>
+				<input class="form-control" ng-model="usuario.endereco" type="text"><br>
+			</div>
+			<div  class="form-group">				
+				<label>Numero: </label>
+				<input class="form-control" ng-model="usuario.numero" type="text"><br>
+			</div>
+			<div  class="form-group">				
+				<label>Cidade: </label>
+				<input class="form-control" ng-model="usuario.cidade" type="text"><br>
+			</div>
+			<div  class="form-group">				
+				<label>Estado: </label>
+				<input class="form-control" ng-model="usuario.estado" type="text"><br>
+			</div>
+			<div  class="form-group">				
+				<label>Genero: </label>
+				<input class="form-control" ng-model="usuario.genero" type="text"><br>
+			</div>
+			<div>				
+			<div>
+			<button class="btn btn-default" ng-click="salvar()">Salvar</button>
+			<button class="btn" ng-click="salvarOuAtualizar()">Salvar Automatico</button>
+			<button class="btn" ng-click="reset()">Limpar</button>
+			<button class="btn" ng-click="listaUsuario()">Pesquisar</button>
+			</div>
+		</fieldset>			
 		<br>
 		<table border="2" >
 			<tr>

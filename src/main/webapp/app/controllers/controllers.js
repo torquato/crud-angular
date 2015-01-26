@@ -24,7 +24,7 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location)
     	
         if($scope.usuario != undefined && $scope.usuario.id != null && $scope.usuario.id != ""){
             var user = Restangular.one("usuario", $scope.usuario.id);
-            user =  $scope.usuario;    
+            user = $scope.usuario;    
             user.put().then(function(){
                 console.log("Usuario atualizado");
                 $scope.listaUsuario();
@@ -40,6 +40,7 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location)
 
     // Outra forma de fazer o save ou update
     $scope.salvarOuAtualizar = function() {
+        //não funciona quando é um objeto novo, pois tem que ser o objeto do RestAngular
         $scope.usuario = Restangular.copy($scope.usuario);
         $scope.usuario.save().then(function(){
             console.log("Usuario salvo ou Atualizado");
