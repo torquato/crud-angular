@@ -93,21 +93,36 @@ app.controller('CrudCtrl',function(Restangular, $scope, $location, ngTableParams
         console.log("Usuarios listado");
     };
     
+    
+    var data = [{id:1, nome: "Moroni", telefone: "132132"},
+                {id:2, nome: "Tiancum", telefone: "132132"},
+                {id:3, nome: "Jacob", telefone: "132132"},
+                {id:4, nome: "Nephi", telefone: "132132"},
+                {id:5, nome: "Enos", telefone: "132132"},
+                {id:6, nome: "Tiancum", telefone: "132132"},
+                {id:7, nome: "Jacob", telefone: "132132"},
+                {id:8, nome: "Nephi", telefone: "132132"},
+                {id:9, nome: "Enos", telefone: "132132"},
+                {id:10, nome: "Tiancum", telefone: "132132"},
+                {id:11, nome: "Jacob", telefone: "132132"},
+                {id:12, nome: "Nephi", telefone: "132132"},
+                {id:13, nome: "Enos", telefone: "132132"},
+                {id:14, nome: "Tiancum", telefone: "132132"},
+                {id:15, nome: "Jacob", telefone: "132132"},
+                {id:16, nome: "Nephi", telefone: "132132"},
+                {id:17, nome: "Enos", telefone: "132132"}];
+
+    
+    
     $scope.tableParams = new ngTableParams({
         page: 1,            // show first page
-        count: 10           // count per page
+        count: 5           // count per page
     }, {
-        total: 0, // length of data
+        total: data.length, // length of data
         getData: function($defer, params) {
-            usuarioServico.getList().then(function (obj){
-        		$scope.usuarios = obj; 	
-                console.log("mizera "+obj.length);
-        		params.total(obj.length);
-        		$defer.resolve($scope.usuarios.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-            });
-        	
+           $defer.resolve( data.slice((params.page() - 1) * params.count(), params.page() * params.count()) );
         }
-    });
+     });
     
     
     $scope.listaUsuario();

@@ -37,6 +37,12 @@ public class UsuarioControl {
 				HttpStatus.OK);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, produces = JSON)
+	public ResponseEntity<List<Usuario>> listPage(int page, int size) {
+		return new ResponseEntity<List<Usuario>>(usuarioServico.recuperar(page, size),
+				HttpStatus.OK);
+	}
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = JSON)
 	public ResponseEntity<Usuario> find(@PathVariable("id") Long id) {
 		return new ResponseEntity<Usuario>(usuarioServico.recuperar(id),
@@ -60,5 +66,8 @@ public class UsuarioControl {
 	public void deletar(@PathVariable("id") Long id) {
 		usuarioServico.deletarUsuario(id);
 	}
+	
+	
+	
 
 }

@@ -1,3 +1,4 @@
+'use strict';
 var app = angular.module('app', [ 'restangular', 'ngRoute','ngTable' ]);
 
 app.config([ 'RestangularProvider', '$routeProvider',
