@@ -2,7 +2,7 @@ package crud.servicos;
 
 import java.util.List;
 
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort.Direction;
 
 import crud.modelo.Usuario;
@@ -17,7 +17,7 @@ public interface UsuarioServico {
 	
 	public Usuario recuperar(Long id);
 	
-	public List<Usuario> recuperar(int page, int size);
+	public Page<Usuario> recuperar(int page, int size);
 
-	public List<Usuario> recuperar(int page,int size, Direction direction, String ... field);
+	public Page<Usuario> recuperar(int page,int size, Direction direction, String ... field);
 }

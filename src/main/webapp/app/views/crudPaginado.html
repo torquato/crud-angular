@@ -1,4 +1,3 @@
-<div class="container">
 <div ng-controller="CrudCtrl" class="panel panel-default" >
 	<div class="panel-heading">
 		Pagina de CRUD Paginado - Esta é uma pagina de teste de um CRUD com o Angular
@@ -55,17 +54,23 @@
 				<button class="btn btn-primary" ng-click="salvar()">Salvar</button>
 <!-- 				<button class="btn btn-default" ng-click="salvarOuAtualizar()" >Salvar Automatico</button> -->
 				<button class="btn btn-default" ng-click="reset()">Limpar</button>
-				<button class="btn btn-default" ng-click="listaUsuario()">Pesquisar</button>
+				<button class="btn btn-default" ng-click="reload()">Pesquisar NgTable</button>
 			</div>
 		<br>
 		
  	    <p><strong>Page:</strong> {{tableParams.page()}}</p>
         <p><strong>Count per page:</strong> {{tableParams.count()}}</p>
 		<table ng-table="tableParams" class="table table-striped table-bordered table-hover">
+	   		<tr>
+				<td style="padding: 5px">ID</td>
+				<td style="padding: 5px">Nome</td>
+				<td style="padding: 5px">Genero</td>
+				<td style="padding: 5px">Ação</td>
+			</tr>
 	   		<tr ng-repeat="u in $data">
 				<td style="padding: 5px">{{ u.id }}</td>
 				<td style="padding: 5px">{{ u.nome }}</td>
-				<td style="padding: 5px">{{ u.telefone }}</td>
+				<td style="padding: 5px">{{ u.genero == 'M' ? 'Masculino': 'Feminino'}}</td>
 				<td>
 					<button class="btn"  ng-click="selecionar(u)">
 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
@@ -78,6 +83,6 @@
         </table>
 		</form>
 	</div>
-</div>
+
 
 

@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
@@ -41,15 +39,15 @@ public class UsuarioServicoImpl implements UsuarioServico {
 	}
 
 	@Override
-	public List<Usuario> recuperar(int page, int size) {
+	public Page<Usuario> recuperar(int page, int size) {
 		Page<Usuario> pageResponse = usuarioRepository.findAll(new PageRequest(page, size));
-		return pageResponse.getContent();
+		return pageResponse;
 	}
 
 	@Override
-	public List<Usuario> recuperar(int page, int size, Direction direction, String... field) {
+	public Page<Usuario> recuperar(int page, int size, Direction direction, String... field) {
 		Page<Usuario> pageResponse = usuarioRepository.findAll(new PageRequest(page, size, direction, field));
-		return pageResponse.getContent();
+		return pageResponse;
 	}
 
 }

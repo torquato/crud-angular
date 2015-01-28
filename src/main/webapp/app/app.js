@@ -12,6 +12,7 @@ app.config([ 'RestangularProvider', '$routeProvider',
 			 */
 
 			RestangularProvider.setBaseUrl("/");
+
 //			RestangularProvider.setRequestInterceptor(function(elem, operation) {
 //				  if (operation === "remove") {
 //				     return null;
@@ -21,6 +22,9 @@ app.config([ 'RestangularProvider', '$routeProvider',
 			
 			$routeProvider
 			.when('/', {
+				templateUrl : 'app/views/home.html',
+				controller : 'HomeCtrl',
+			}).when('/crud', {
 				templateUrl : 'app/views/crud.html',
 				controller : 'CrudCtrl',
 			}).when('/crudPaginado', {
@@ -57,3 +61,9 @@ app.config([ 'RestangularProvider', '$routeProvider',
 			// caso não seja nenhum desses, redirecione para a rota '/'
 
 		} ]);
+
+app.factory('RestFulResponse', function(Restangular) {
+  return Restangular.withConfig(function(RestangularConfigurer) {
+    RestangularConfigurer.setFullResponse(true);
+  });
+});
