@@ -26,7 +26,7 @@
   			 <div  class="form-group col-md-2">				
 				<label>Genero: </label>
 				<select class="form-control" ng-model="usuario.genero">
-					<option value="M">Masculino</option>
+					<option value="M" selected>Masculino</option>
 					<option value="F">Feminino</option>
 				</select>
 			 </div>
@@ -70,7 +70,7 @@
 	   		<tr ng-repeat="u in $data">
 				<td style="padding: 5px">{{ u.id }}</td>
 				<td style="padding: 5px">{{ u.nome }}</td>
-				<td style="padding: 5px">{{ u.genero == 'M' ? 'Masculino': 'Feminino'}}</td>
+				<td style="padding: 5px">{{ u.genero == 'F' ? 'Feminino' : 'Masculino' }}</td>
 				<td>
 					<button class="btn"  ng-click="selecionar(u)">
 						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
