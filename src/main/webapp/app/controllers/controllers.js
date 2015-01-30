@@ -111,6 +111,23 @@ app.controller('CrudCtrl', function(Restangular, $scope, $filter, $location, ngT
 
     $scope.listaUsuario();
     $scope.activetab = $location.path();
+
+
+    $scope.dt = new Date();
+    $scope.opened = false;
+
+    $scope.open = function($event){
+        $event.preventDefault();
+        $event.stopPropagation();
+
+         $scope.opened = true;
+    }
+
+     $scope.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+      };
+
 });
 
 

@@ -1,5 +1,5 @@
 'use strict';
-var app = angular.module('app', [ 'restangular', 'ngRoute','ngTable' ]);
+var app = angular.module('app', [ 'restangular', 'ngRoute','ngTable','ui.bootstrap' ]);
 
 app.config([ 'RestangularProvider', '$routeProvider',
 		function(RestangularProvider, $routeProvider) {

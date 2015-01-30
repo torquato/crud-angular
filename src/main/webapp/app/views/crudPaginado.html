@@ -13,24 +13,35 @@
 					<label>Nome: </label>
 					<input class="form-control" ng-model="usuario.nome" type="text">
 				</div>
-				 <div class="form-group col-md-4">
+				<div class="form-group col-md-4">
 					<label>Telefone: </label>
 					<input class="form-control" ng-model="usuario.telefone" type="text">
-				 </div>
+				</div>
 			</div>
 			<div  class="row">				
-  			 <div class="form-group col-md-4">
-				<label>Data Nascimento: </label>
-				<input class="form-control" ng-model="usuario.dataNascimento" type="text">
-  			 </div>
-  			 <div  class="form-group col-md-2">				
-				<label>Genero: </label>
-				<select class="form-control" ng-model="usuario.genero">
-					<option value="M" selected>Masculino</option>
-					<option value="F">Feminino</option>
-				</select>
-			 </div>
-  			 	
+				<!-- <div class="form-group col-md-4">
+					<label>Data Nascimento: </label>
+					<input class="form-control" ng-model="usuario.dataNascimento" type="text">
+				</div> -->
+				<div class="form-group col-md-4">
+					<label>Data Nascimento: </label>
+					<p class="input-group">
+						<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="usuario.dataNascimento" is-open="opened" min-date="'2012-06-22'"   max-date="'2015-06-22'"  ng-required="true" datepicker-options="dateOptions" close-text="Close" />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+						</span>
+					</p>
+				</div>
+
+
+				<div  class="form-group col-md-2">				
+					<label>Genero: </label>
+					<select class="form-control" ng-model="usuario.genero">
+						<option value="M" > Masculino</option>
+						<option value="F"> Feminino</option>
+					</select>
+				</div>
+
 			</div>
 			<div class="form-group">				
 				<label>Endereco: </label>
@@ -52,35 +63,35 @@
 			</div>
 			<div class="form-group">
 				<button class="btn btn-primary" ng-click="salvar()">Salvar</button>
-<!-- 				<button class="btn btn-default" ng-click="salvarOuAtualizar()" >Salvar Automatico</button> -->
+				<!-- 				<button class="btn btn-default" ng-click="salvarOuAtualizar()" >Salvar Automatico</button> -->
 				<button class="btn btn-default" ng-click="reset()">Limpar</button>
 				<button class="btn btn-default" ng-click="reload()">Pesquisar NgTable</button>
 			</div>
-		<br>
-		
- 	    <p><strong>Page:</strong> {{tableParams.page()}}</p>
-        <p><strong>Count per page:</strong> {{tableParams.count()}}</p>
-		<table ng-table="tableParams" class="table table-striped table-bordered table-hover">
-	   		<tr>
-				<td style="padding: 5px">ID</td>
-				<td style="padding: 5px">Nome</td>
-				<td style="padding: 5px">Genero</td>
-				<td style="padding: 5px">Ação</td>
-			</tr>
-	   		<tr ng-repeat="u in $data">
-				<td style="padding: 5px">{{ u.id }}</td>
-				<td style="padding: 5px">{{ u.nome }}</td>
-				<td style="padding: 5px">{{ u.genero == 'F' ? 'Feminino' : 'Masculino' }}</td>
-				<td>
-					<button class="btn"  ng-click="selecionar(u)">
-						<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-					</button>
-					<button class="btn" ng-click="remover(u)">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
-				</td>
-			</tr>
-        </table>
+			<br>
+
+			<p><strong>Page:</strong> {{tableParams.page()}}</p>
+			<p><strong>Count per page:</strong> {{tableParams.count()}}</p>
+			<table ng-table="tableParams" class="table table-striped table-bordered table-hover">
+				<tr>
+					<td style="padding: 5px">ID</td>
+					<td style="padding: 5px">Nome</td>
+					<td style="padding: 5px">Genero</td>
+					<td style="padding: 5px">Ação</td>
+				</tr>
+				<tr ng-repeat="u in $data">
+					<td style="padding: 5px">{{ u.id }}</td>
+					<td style="padding: 5px">{{ u.nome }}</td>
+					<td style="padding: 5px">{{ u.genero == 'F' ? 'Feminino' : 'Masculino' }}</td>
+					<td>
+						<button class="btn"  ng-click="selecionar(u)">
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						</button>
+						<button class="btn" ng-click="remover(u)">
+							<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+						</button>
+					</td>
+				</tr>
+			</table>
 		</form>
 	</div>
 
