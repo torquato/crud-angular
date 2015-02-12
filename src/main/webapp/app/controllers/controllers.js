@@ -1,5 +1,12 @@
 'use strict';
 app.controller('CrudCtrl', function(Restangular, $scope, $filter, $location, ngTableParams, RestFulResponse) {
+
+    $scope.generos = [
+        {id:'M', name : 'Masculino'},
+        {id:'F', name : 'Feminino'}
+    ];
+
+
     var usuarioVazio = {
         id: null,
         nome: "",
@@ -21,6 +28,11 @@ app.controller('CrudCtrl', function(Restangular, $scope, $filter, $location, ngT
     // forma manual de fazer o save ou update
     $scope.salvar = function() {
 
+        if (!$scope.principalForm.$valid) {
+            return;
+        }
+
+
         if ($scope.usuario != undefined && $scope.usuario.id != null && $scope.usuario.id != "") {
             var user = Restangular.one("usuario", $scope.usuario.id);
             user = $scope.usuario;
@@ -37,6 +49,7 @@ app.controller('CrudCtrl', function(Restangular, $scope, $filter, $location, ngT
                 $scope.reset();
             });
         }
+
     };
 
     // Outra forma de fazer o save ou update
@@ -116,17 +129,17 @@ app.controller('CrudCtrl', function(Restangular, $scope, $filter, $location, ngT
     $scope.dt = new Date();
     $scope.opened = false;
 
-    $scope.open = function($event){
+    $scope.open = function($event) {
         $event.preventDefault();
         $event.stopPropagation();
 
-         $scope.opened = true;
+        $scope.opened = true;
     }
 
-     $scope.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-      };
+    $scope.dateOptions = {
+        formatYear: 'yy',
+        startingDay: 1
+    };
 
 });
 
